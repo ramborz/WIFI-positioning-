@@ -1,6 +1,7 @@
   
 import sys
 import numpy as np
+import math
 
 def trilaterate3D(data):
     #x,y,z
@@ -25,9 +26,11 @@ def trilaterate3D(data):
 
     x=((r1**2)-(r2**2)+(d**2))/(2*d)
     y=(((r1**2)-(r3**2)+(i**2)+(j**2))/(2*j))-((i/j)*(x))
-
+    #x=math.floor(x*1000)/1000
+    #y=math.floor(y*1000)/1000
     print (x)
     print (y)
+
     z1=np.sqrt(r1**2-x**2-y**2)
     z2=np.sqrt(r1**2-x**2-y**2)*(-1)
 
@@ -36,6 +39,7 @@ def trilaterate3D(data):
     dist1=np.linalg.norm(p4-ans1)
     dist2=np.linalg.norm(p4-ans2)
     if np.abs(r4-dist1)<np.abs(r4-dist2):
+        
         return ans1
     else: 
         return ans2
@@ -57,6 +61,7 @@ if __name__ == "__main__":
         print (data[p]) 
 
     # Call the function and compute the location 
-    location = trilaterate3D(data)
-    print 
-    print ("The location of the point is: " + str(location))
+    coord = trilaterate3D(data)
+    for p in range(0, len(coord)):
+        print (math.floor(coord[p]*100)/100) 
+    print ("The location of the point is: " + str(coord))
