@@ -6,7 +6,7 @@ engine = create_engine(config.database_uri)
 
 def get_all():
     with engine.connect() as con:
-        rs = con.execute("select * from SSID")
+        rs = con.execute("select * from wifi_info")
         return [dict(row) for row in rs]
 
 def get_name(BSSID):
@@ -20,7 +20,7 @@ def get_cord(BSSID):
             "SELECT * FROM cord WHERE BSSID = :BSSID;"
         )
 
-        rs = con.execute(query, name=BSSID)
+        rs = con.execute(query, BSSID=BSSID)
         result = rs.first()
         if result is None:
             return None
@@ -32,7 +32,7 @@ def get_label(BSSID):
             "SELECT * FROM label WHERE BSSID = :BSSID;"
         )
 
-        rs = con.execute(query, name=BSSID)
+        rs = con.execute(query, BSSID=BSSID)
         result = rs.first()
         if result is None:
             return None

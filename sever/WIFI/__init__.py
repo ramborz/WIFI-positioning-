@@ -7,16 +7,16 @@ from WIFI import database
 
 app = Flask(__name__)
 
-@app.route('/api/name', methods=["GET"])
+@app.route('/api/wifi', methods=["GET"])
 def get_allname():
     return jsonify(database.get_all())
 
-@app.route("/api/name/<name>", methods=["GET"])
-def get_name(BSSID):
+@app.route("/api/wifi/<name>", methods=["GET"])
+def get_name(name):
     try:
-        if BSSID is None:
+        if name is None:
             raise ValueError("ID not specified.")
-        x = database.get_name(BSSID)
+        x = database.get_name(name)
         if x is None:
             return make_response("No found wifi name", 404)
         return jsonify(x)

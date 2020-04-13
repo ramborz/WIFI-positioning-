@@ -1,0 +1,38 @@
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">WIFI locator</h1>
+      <p class="lead">This is a locator help you find your self in your building.</p>
+      <p class="lead">Qinyang Li Qiuyu Zhang</p>
+    </div>
+  </div>
+  <div class = "container">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">bssid</th>
+        <th scope="col">ssid</th>
+        <th scope="col">auth_types</th>
+        <th scope="col">key_types</th>
+        <th scope="col">signal</th>
+        <th scope="col">frequency</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let wifi of wifis; index as i">
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{wifi.bssid}}</td>
+        <td>{{wifi.ssid}}</td>
+        <td>{{wifi.auth_types}}</td>
+        <td>{{wifi.key_types}}</td>
+        <td>{{wifi.signal}}</td>
+        <td>{{wifi.frequency}}</td>
+        
+        
+      </tr>
+
+    </tbody>
+  </table>
+  
